@@ -10,7 +10,7 @@ function App() {
 
   // Busca produtos da API
   useEffect(() => {
-    fetch("http://localhost:3000/produtos")
+    fetch("http://localhost:3001/produtos")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Erro ao buscar produtos:", err));
@@ -49,7 +49,7 @@ function App() {
   // Finaliza compra
   const finalizePurchase = async () => {
     try {
-      const response = await fetch("http://localhost:3000/finalizar-compra", {
+      const response = await fetch("http://localhost:3001/finalizar-compra", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart }),
