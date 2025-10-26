@@ -14,9 +14,9 @@ const getProdutos = async (req, res) => {
 
 const getProdutosById = async (req, res) => {
     try {
-        const {id} = req.params;
-        const taskEncontrada = await findProdutoById(id);    
-        res.status(200).json(taskEncontrada);
+        const {id} = req.body;
+        const produtoEncontrado = await findProdutoById(id);    
+        res.status(200).json(produtoEncontrado);
     } catch (error){
         const status = error.statusCode || 500;
         const mensagem = error.message || "Erro interno no servidor";
@@ -25,5 +25,6 @@ const getProdutosById = async (req, res) => {
 }
 
 module.exports = {
-    getProdutos
+    getProdutos,
+    getProdutosById
 };
