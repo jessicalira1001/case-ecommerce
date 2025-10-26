@@ -15,7 +15,7 @@ const getProdutos = async (req, res) => {
 const getProdutosById = async (req, res) => {
     try {
         const {id} = req.params;
-        const taskEncontrada = await findProdutoById(id, userId);    
+        const taskEncontrada = await findProdutoById(id);    
         res.status(200).json(taskEncontrada);
     } catch (error){
         const status = error.statusCode || 500;
