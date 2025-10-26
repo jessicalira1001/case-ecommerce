@@ -3,7 +3,7 @@ const { getProdutos } = require("../controllers/produtosController")
 
 const rotasProduto = express.Router();
 
-rotasProduto.get("/produto",  getProdutos);
+rotasProduto.get("/produtos",  getProdutos);
 
 
 module.exports = rotasProduto;
