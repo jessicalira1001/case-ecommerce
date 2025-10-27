@@ -55,7 +55,7 @@ A aplicação permite listar produtos, adicionar itens ao carrinho e finalizar a
 ### 🗃️ Modelagem do Banco de Dados
 
 Banco: PostgreSQL
-
+```sql
 CREATE DATABASE BD_ecommerce_case;
 
 \c BD_ecommerce_case;
@@ -88,23 +88,38 @@ VALUES
 ('Notebook Dell', 'Notebook i5 com 8GB RAM', 3500.00, 'https://picsum.photos/200?1'),
 ('Mouse Gamer', 'Mouse óptico RGB', 150.00, 'https://picsum.photos/200?2'),
 ('Teclado Mecânico', 'Switch Blue, LED branco', 250.00, 'https://picsum.photos/200?3');
-
-🧩 Arquitetura do Projeto
-ecommerce-case/
+```
+### 🧩 Arquitetura do Projeto
+```bash
+case-ecommerce/
 │
 ├── backend/
 │   ├── .env
 │   ├── package.json
 │   └── src/
 │       ├── index.js
-│       ├── db.js
+│       ├── config
+│       │   └── db.js
 │       ├── routes/
+│       │   └── carrinhoRoutes.js
+│       │   └── compraRoutes.js
 │       │   └── produtosRoutes.js
+│       ├── repositories/
+│       │   └── compraRepository.js
+│       │   └── produtosRepository.js
+│       ├── services/
+│       │   └── carrinhoService.js
+│       │   └── compraService.js
+│       │   └── produtosService.js
 │       └── controllers/
+│           └── carrinhoController.js
+│           └── compraController.js
 │           └── produtosController.js
 │
 └── frontend/
     ├── package.json
+    ├── public
+    │   └── index.html
     └── src/
         ├── index.js
         ├── App.jsx
@@ -112,69 +127,77 @@ ecommerce-case/
         │   ├── ProductCard.jsx
         │   └── Cart.jsx
         └── styles.css
+```
 
-⚙️ Configuração do Back-end
-🔧 Variáveis de ambiente (.env)
+## ⚙️ Configuração do Back-end
+### 🔧 Variáveis de ambiente (.env)
 
 Crie o arquivo .env na pasta backend/ com:
-
+```env
 PORT=3000
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=sua_senha
 DB_NAME=BD_ecommerce_case
-
-▶️ Rodar o servidor
+```
+### ▶️ Rodar o servidor
+```bash
 cd backend
 npm install
 node src/index.js
+```
 
-
-O servidor será iniciado em:
-
-http://localhost:3000
-
-💻 Configuração do Front-end
+#### O servidor será iniciado em:
+```bash
+http://localhost:3001
+```
+### 💻 Configuração do Front-end
+```bash
 cd frontend
 npm install
 npm start
+```
 
+#### A aplicação React será iniciada em:
+```bash
+http://localhost:3000
+```
 
-A aplicação React será iniciada em:
+## 🔗 Integração Front → Back
 
-http://localhost:3001
-
-🔗 Integração Front → Back
-
-Listar produtos:
-GET http://localhost:3000/produtos
-
-Finalizar compra:
-POST http://localhost:3000/finalizar-compra
-
+### Listar produtos:
+```bash
+GET http://localhost:3001/produtos
+```
+### Finalizar compra:
+```bash
+POST http://localhost:3001/finalizar-compra
+```
+```json
 {
   "cart": [
     { "id": 1, "name": "Notebook Dell", "quantity": 1, "price": 3500.00 }
   ]
 }
+```
+## 🧠 Fluxo de funcionamento
 
-🧠 Fluxo de funcionamento
+- O usuário acessa o front-end em React.
 
-O usuário acessa o front-end em React.
+- A aplicação faz um fetch na rota /produtos do back-end.
 
-A aplicação faz um fetch na rota /produtos do back-end.
+- O Node.js consulta o banco PostgreSQL e retorna os produtos.
 
-O Node.js consulta o banco PostgreSQL e retorna os produtos.
+- O usuário adiciona itens ao carrinho e clica em “Finalizar compra”.
 
-O usuário adiciona itens ao carrinho e clica em “Finalizar compra”.
+- O front envia o carrinho para /finalizar-compra.
 
-O front envia o carrinho para /finalizar-compra.
+- O servidor registra a venda e responde com uma mensagem de sucesso.
 
-O servidor registra a venda e responde com uma mensagem de sucesso.
-
-🧪 Exemplo de resposta da API
-GET /produtos
+## 🧪 Exemplo de resposta da API
+### GET /produtos
+```json
 [
   {
     "id": 1,
@@ -191,26 +214,27 @@ GET /produtos
     "image_url": "https://picsum.photos/200?2"
   }
 ]
-
-POST /finalizar-compra
+```
+### POST /finalizar-compra
+```json
 {
   "success": true,
   "message": "Compra finalizada com sucesso"
 }
+```
+## 🧩 Melhorias Futuras
 
-🧩 Melhorias Futuras
+- Implementar autenticação de usuários (JWT)
 
-Implementar autenticação de usuários (JWT)
+- Criar painel administrativo para cadastrar produtos
 
-Criar painel administrativo para cadastrar produtos
+- Adicionar testes automatizados (Jest)
 
-Adicionar testes automatizados (Jest)
+- Fazer deploy com Docker e Render/Heroku
 
-Fazer deploy com Docker e Render/Heroku
+## 👩‍💻 Autora
 
-👩‍💻 Autora
-
-Jéssica Lira
-Desenvolvedora Full Stack | Node.js • React • PostgreSQL
-📧 [seu e-mail]
-🔗 github.com/jessicalira1001
+### Jéssica Lira
+#### Desenvolvedora Full Stack | Node.js • React • PostgreSQL
+#### 📧 jessicaliradev@gmail.com
+#### 🔗 github.com/jessicalira1001
