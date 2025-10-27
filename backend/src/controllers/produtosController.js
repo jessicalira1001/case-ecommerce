@@ -1,6 +1,5 @@
 const {listProdutos, findProdutoById,} = require('../services/produtosService.js')
 
-
 const getProdutos = async (req, res) => {
     try {
         const listaDeProdutos = await listProdutos();

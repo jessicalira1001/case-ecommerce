@@ -7,11 +7,9 @@ const postCarrinho = async (req, res) => {
     const newCart = createCarrinho(productId, quantity)
     res.status(200).json({message: "Produto adicionado ao carrinho com sucesso", produto: produto.rows[0], quantity,});
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Erro ao adicionar produto ao carrinho" });
   }
 };
-
 
 const putCarrinho = async (req, res) => {
   const { productId, quantity } = req.body;

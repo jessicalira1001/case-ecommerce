@@ -5,7 +5,6 @@ const listProdutos = async () => {
 }
 
 const findProdutoById = async (id) => {
-
         return await selectProdutoById(id);
 }
 
