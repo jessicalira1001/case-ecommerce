@@ -1,5 +1,5 @@
 const express = require('express');
-const { postCompra } = require("../controllers/compraController")
+const { postCompra } = require("../controllers/compraController.js")
 
 const rotasCompra = express.Router();
 
