@@ -8,7 +8,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
 
-  // Busca produtos da API
   useEffect(() => {
     fetch("http://localhost:3001/produtos")
       .then((res) => res.json())
@@ -16,7 +15,6 @@ function App() {
       .catch((err) => console.error("Erro ao buscar produtos:", err));
   }, []);
 
-  // Adiciona item ao carrinho
   const addToCart = (product) => {
     const existing = cart.find((item) => item.id === product.id);
     if (existing) {
@@ -32,12 +30,10 @@ function App() {
     }
   };
 
-  // Remove item do carrinho
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
   };
 
-  // Atualiza quantidade
   const updateQuantity = (id, quantity) => {
     setCart(
       cart.map((item) =>
@@ -46,7 +42,6 @@ function App() {
     );
   };
 
-  // Finaliza compra
   const finalizePurchase = async () => {
     try {
       const response = await fetch("http://localhost:3001/finalizar-compra", {
