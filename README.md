@@ -134,7 +134,7 @@ case-ecommerce/
 
 Crie o arquivo .env na pasta backend/ com:
 ```env
-PORT=3000
+PORT=3001
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
